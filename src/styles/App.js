@@ -34,6 +34,12 @@ export default StyleSheet.create({
     "span": {
         "fontFamily": "'Maname', serif"
     },
+    "layout": {
+        "marginTop": 10,
+        "marginRight": 50,
+        "marginBottom": 50,
+        "marginLeft": 50
+    },
     "font-details": {
         "paddingTop": 23,
         "paddingRight": 23,
@@ -63,6 +69,7 @@ export default StyleSheet.create({
         "fontSize": 1
     },
     "edit drag": {
+        "position": "absolute",
         "opacity": 0,
         "float": "left",
         "fontSize": 0.6,

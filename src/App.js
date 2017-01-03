@@ -10,14 +10,16 @@ const ReactGridLayout2 = WidthProvider(ReactGridLayout);
 
 class App extends Component {
   componentDidMount() {
-    const editor = new MediumEditor('.edit', {});
+    // const editor = new MediumEditor('.edit', {});
   }
 
   render() {
     const layout = [
-      { i: 'a', x: 0, y: 0, w: 4, h: 35 },
-      { i: 'b', x: 8, y: 0, w: 8, h: 35 },
-      { i: 'c', x: 6, y: 0, w: 6, h: 3 }
+      { i: '10', x: 0, y: 0, w: 4, h: 7 },
+      { i: '15', x: 0, y: 0, w: 4, h: 2 },
+      { i: '20', x: 0, y: 0, w: 4, h: 35 },
+      { i: '30', x: 8, y: 0, w: 8, h: 35 },
+      { i: '40', x: 6, y: 0, w: 6, h: 3 }
     ];
 
     return (
@@ -38,13 +40,20 @@ class App extends Component {
           autoSize
           useCSSTransforms
         >
-          <div key={'a'} className="edit section1-col1">
+          <div key={'10'} className="edit">
             <i className="fa fa-arrows drag" aria-hidden="true" />
             <h2 className="section-title">
               The Screen in Review Elephant Walk opens at Astor theatre
             </h2>
-            <span className="title-meta">By BOSLEY CROWTHER</span>
+          </div>
 
+          <div key={'15'} className="edit">
+            <i className="fa fa-arrows drag" aria-hidden="true" />
+            <span className="title-meta">By BOSLEY CROWTHER</span>
+          </div>
+
+          <div key={'20'} className="edit">
+            <i className="fa fa-arrows drag" aria-hidden="true" />
             <p className="text"> “TELL me about the elephants,” Elizabeth Taylor
               timorously says to Dana Andrews in the first
               few minutes of the Astor’s new picture, “Elephant
@@ -74,7 +83,7 @@ class App extends Component {
             Paramount Pictures. At the Astor.</p>
           </div>
 
-          <div key={'b'} className="edit small">
+          <div key={'30'} className="edit small">
             <i className="fa fa-arrows drag" aria-hidden="true" />
             <p className="text">
               මතය වන්නේ සේකර විශේෂයෙන් කැපී පෙනුණේ චිත්‍ර කලාවට බව ය. කවියේදී මෙන් ම චිත්‍ර කලාවේදී ද

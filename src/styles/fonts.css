@@ -1,9 +1,15 @@
 @font-face {
-  font-family: 'PostNoBillsColombo';
-  src: url('../fonts/PostNoBillsJaffna-ExtraBold.ttf') format('ttf');
-  font-weight: regular;
-  font-style: regular;
+  font-family: 'Maname';
+  src: url('../fonts/Maname-Regular-Latin.otf') format('opentype');
 }
+
+@font-face {
+  font-family: 'Maname';
+  src: url('../fonts/Maname-Regular.otf') format('opentype');
+  /*font-style: normal;
+  font-weight:  300;*/
+}
+
 /*@font-face {
   font-family: 'ProximaNova';
   src: url('/fonts/proximanova-bold-webfont.woff2') format('woff2'), url('/fonts/proximanova-bold-webfont.woff') format('woff');

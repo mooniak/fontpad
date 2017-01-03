@@ -1,11 +1,30 @@
-.App {
-  text-align: center;
-  font-family: 'PostNoBillsColombo';
+html {
+  font-family: 'Maname', serif;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+  font-family: 'Maname', serif;
+}
+
+.font-details {
+  padding: 23px;
+}
+
+.font-title {
+  font-size: 1.2em;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.font-meta {
+  display: block;
+  font-size: 0.8em;
 }
 
 .edit {
-  font-size: 2.5em;
   overflow: hidden;
+  padding: 10px;
 }
 
 .edit:focus {
@@ -31,7 +50,35 @@
   opacity: 0;
 }
 
-.edit:hover .drag,
-.edit:hover .react-resizable-handle {
+.edit:hover .drag, .edit:hover .react-resizable-handle {
   opacity: 1;
+}
+
+.section-title {
+  margin-bottom: 0;
+  font-weight: 300;
+  font-size: 2.5em;
+}
+
+.title-meta {
+  font-size: 1.5em;
+  margin-bottom: 2em;
+  display: block;
+}
+
+.text {
+  line-height: 1.7em;
+  font-size: 1em;
+}
+
+.pulledquote {
+  line-height: 1.5em;
+  display: block;
+  float: right;
+  padding: 0 0 0 10px;
+  margin: 0 0 10px 10px;
+  width: 45%;
+  font-size: 1.4em;
+  margin-right: 35px;
+  text-align: left;
 }

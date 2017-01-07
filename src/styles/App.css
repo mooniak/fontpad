@@ -41,6 +41,7 @@ h1, h2, h3, h4, h5, h6, p, span {
 }
 
 .edit .drag {
+  z-index: 999999;
   position: absolute;
   opacity: 0;
   float: left;

@@ -69,6 +69,7 @@ export default StyleSheet.create({
         "fontSize": 1
     },
     "edit drag": {
+        "zIndex": 999999,
         "position": "absolute",
         "opacity": 0,
         "float": "left",

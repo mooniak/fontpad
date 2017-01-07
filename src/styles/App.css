@@ -44,26 +44,63 @@ h1, h2, h3, h4, h5, h6, p, span {
   position: absolute;
   opacity: 0;
   float: left;
-  font-size: 0.6em;
+  font-size: 0.7em !important;
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-.edit .react-resizable-handle {
+.block-controls {
+  float: right;
+  width: 100%;
+  text-align: right;
+  font-size: 0.7em;
+  position: absolute;
+}
+
+.controls {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2px;
+}
+
+.control-label {
+  float: left;
+  display: block;
+}
+
+.rc-slider {
+  display: inline-block;
+}
+
+.edit .react-resizable-handle, .block-controls, .controls {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   opacity: 0;
 }
 
-.edit:hover .drag, .edit:hover .react-resizable-handle {
+.block-controls:hover .controls {
   opacity: 1;
+}
+
+.edit:hover .drag, .edit:hover .react-resizable-handle, .edit:hover .block-controls {
+  opacity: 1;
+}
+
+.rc-slider-track {
+  background-color: #111;
+}
+
+.rc-slider-handle {
+  border-color: rgb(17, 17, 17);
+}
+
+.rc-slider-handle:hover {
+  border-color: #cfcfcf;
 }
 
 .section-title {
   margin-bottom: 0;
   font-weight: 300;
-  font-size: 2.5em;
 }
 
 .title-meta {

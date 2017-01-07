@@ -1,19 +1,49 @@
 import React, { Component } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
-import MediumEditor from 'medium-editor';
+import Slider from 'rc-slider';
 
 
 import '../node_modules/medium-editor/dist/css/medium-editor.min.css';
 import '../node_modules/medium-editor/dist/css/themes/beagle.min.css';
+import '../node_modules/rc-slider/assets/index.css';
 
 const ReactGridLayout2 = WidthProvider(ReactGridLayout);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      block1: {
+        fontSize: '40',
+        lineHeight: '1.5',
+        letterSpacing: '0'
+      },
+      block2: {
+        fontSize: '25',
+        lineHeight: '1.5',
+        letterSpacing: '0'
+      },
+      block3: {
+        fontSize: '16',
+        lineHeight: '1.7',
+        letterSpacing: '0'
+      },
+      block4: {
+        fontSize: '16',
+        lineHeight: '1.7',
+        letterSpacing: '0'
+      }
+    };
+  }
+
   componentDidMount() {
     // const editor = new MediumEditor('.edit', {});
   }
 
   render() {
+    const { block1, block2, block3, block4 } = this.state;
+
     const layout = [
       { i: '10', x: 0, y: 0, w: 4, h: 7 },
       { i: '15', x: 0, y: 0, w: 4, h: 2 },
@@ -42,19 +72,193 @@ class App extends Component {
         >
           <div key={'10'} className="edit">
             <i className="fa fa-arrows drag" aria-hidden="true" />
-            <h2 className="section-title">
+
+            <div className="block-controls">
+              <i className="fa fa-bars controls-toggle" aria-hidden="true" />
+              <div className="controls">
+                <div>
+                  <span className="control-label">Font size :</span>
+                  <Slider
+                    min={1}
+                    max={100}
+                    value={block1.fontSize}
+                    step={0.5}
+                    onChange={(value) => {
+                      this.setState({
+                        block1: {
+                          ...block1,
+                          fontSize: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Line height :</span>
+                  <Slider
+                    min={0}
+                    max={10}
+                    value={block1.lineHeight}
+                    step={0.1}
+                    onChange={(value) => {
+                      this.setState({
+                        block1: {
+                          ...block1,
+                          lineHeight: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Letter spacing :</span>
+                  <Slider
+                    min={0}
+                    max={100}
+                    value={block1.letterSpacing}
+                    step={0.5}
+                    onChange={(value) => {
+                      this.setState({
+                        block1: {
+                          ...block1,
+                          letterSpacing: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <h2 className="section-title" style={block1}>
               The Screen in Review Elephant Walk opens at Astor theatre
             </h2>
           </div>
 
           <div key={'15'} className="edit">
             <i className="fa fa-arrows drag" aria-hidden="true" />
-            <span className="title-meta">By BOSLEY CROWTHER</span>
+
+            <div className="block-controls">
+              <i className="fa fa-bars controls-toggle" aria-hidden="true" />
+              <div className="controls">
+                <div>
+                  <span className="control-label">Font size :</span>
+                  <Slider
+                    min={1}
+                    max={100}
+                    step={0.5}
+                    value={block1.fontSize}
+                    onChange={(value) => {
+                      this.setState({
+                        block2: {
+                          ...block2,
+                          fontSize: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Line height :</span>
+                  <Slider
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    value={block2.lineHeight}
+                    onChange={(value) => {
+                      this.setState({
+                        block2: {
+                          ...block2,
+                          lineHeight: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Letter spacing :</span>
+                  <Slider
+                    min={0}
+                    max={100}
+                    step={0.5}
+                    value={block2.letterSpacing}
+                    onChange={(value) => {
+                      this.setState({
+                        block2: {
+                          ...block2,
+                          letterSpacing: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <span className="title-meta" style={block2}>By BOSLEY CROWTHER</span>
           </div>
 
           <div key={'20'} className="edit">
             <i className="fa fa-arrows drag" aria-hidden="true" />
-            <p className="text"> “TELL me about the elephants,” Elizabeth Taylor
+
+            <div className="block-controls">
+              <i className="fa fa-bars controls-toggle" aria-hidden="true" />
+              <div className="controls">
+                <div>
+                  <span className="control-label">Font size :</span>
+                  <Slider
+                    min={1}
+                    max={100}
+                    step={0.5}
+                    value={block3.fontSize}
+                    onChange={(value) => {
+                      this.setState({
+                        block3: {
+                          ...block3,
+                          fontSize: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Line height :</span>
+                  <Slider
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    value={block3.lineHeight}
+                    onChange={(value) => {
+                      this.setState({
+                        block3: {
+                          ...block3,
+                          lineHeight: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Letter spacing :</span>
+                  <Slider
+                    min={0}
+                    max={100}
+                    step={0.5}
+                    value={block3.letterSpacing}
+                    onChange={(value) => {
+                      this.setState({
+                        block3: {
+                          ...block3,
+                          letterSpacing: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <p className="text" style={block3}> “TELL me about the elephants,” Elizabeth Taylor
               timorously says to Dana Andrews in the first
               few minutes of the Astor’s new picture, “Elephant
               Walk.” The two are casually getting acquainted in
@@ -85,7 +289,65 @@ class App extends Component {
 
           <div key={'30'} className="edit small">
             <i className="fa fa-arrows drag" aria-hidden="true" />
-            <p className="text">
+
+            <div className="block-controls">
+              <i className="fa fa-bars controls-toggle" aria-hidden="true" />
+              <div className="controls">
+                <div>
+                  <span className="control-label">Font size :</span>
+                  <Slider
+                    min={1}
+                    max={100}
+                    step={0.5}
+                    value={block4.fontSize}
+                    onChange={(value) => {
+                      this.setState({
+                        block4: {
+                          ...block4,
+                          fontSize: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Line height :</span>
+                  <Slider
+                    min={0}
+                    max={10}
+                    step={0.1}
+                    value={block4.lineHeight}
+                    onChange={(value) => {
+                      this.setState({
+                        block4: {
+                          ...block4,
+                          lineHeight: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <span className="control-label">Letter spacing :</span>
+                  <Slider
+                    min={0}
+                    max={100}
+                    step={0.5}
+                    value={block4.letterSpacing}
+                    onChange={(value) => {
+                      this.setState({
+                        block4: {
+                          ...block4,
+                          letterSpacing: value
+                        }
+                      });
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <p className="text" style={block4}>
               මතය වන්නේ සේකර විශේෂයෙන් කැපී පෙනුණේ චිත්‍ර කලාවට බව ය. කවියේදී මෙන් ම චිත්‍ර කලාවේදී ද
               මුල් යුගයේ ඔහු අමුර්ත චිත්‍ර ගර්හාවට ලක් කර ඇත. එහෙත් පසුව ඔහු නිර්මාණ බිහි කළේ එම චිත්‍ර
               ශෛලිය ප්‍රගුණ කරමිනි. මා නිවැරැදි නම් සේකර අවස්ථා තුනකට වඩා චිත්‍ර ප්‍රදර්ශන පවත්වා නැත.
@@ -95,7 +357,7 @@ class App extends Component {
               යොමු වී නැත. එහි විපාක වශයෙන්දෝ සේකර නමැති චිත්‍ර ශිල්පියා යටපත්ව සේකර නමැති කවියා හා ගීත
               රචකයා බිහි වූ ආකාරයක් පෙනේ.
             </p>
-            <p className="text"> මෙහි ප්‍රතිවිරුද්ධ දේ සිදු වූයේ ජෝර්ජ් කීට්ය. එහිදී ජෝර්ජ් කීට් නමැති කවියා යටපත්ව ජෝර්ජ් කීට් නමැති චිත්‍ර ශිල්පියා බිහි වූයේ ය. සේකර නවකතා දෙකක් ද කෙටිකතා සංග්‍රහ දෙකක් ද ලියා පළ කර ඇත. ඔහුගේ නවකතාවක් වූ ‘තුංමංහන්දිය’ ඔහු විසින්ම චිත්‍රපටගත කරනු ලැබිණි. එය 70 දශකයේ හොඳම චිත්‍රපටය ලෙස ජාතික කතෝලික සිනමා පර්ෂදයෙන් බුහුමන් ලද්දේ ය. 1997 දී සිංහල සිනමාවට 50 වසරක් පිරුණු අවස්ථාවේ තේරූ හොඳ ම චිත්‍රපට දහයෙන් එකක් ලෙස ද ‘තුංමංහන්දිය’ තේරුණේ ය. එ සේම එය 1972 දී ටෂ්කන්ට් අන්තර්ජාතික චිත්‍රපට උලෙළේදී ඩිප්ලෝමා සහතිකයක් ද දිනාගත්තේ ය. ‘මූදු පුත්තු’ (ගුණසේන ගලප්පත්ති සමඟ) සේකර ලියූ වේදිකා නාට්‍ය පිටපතකි. ඔහු ලියූ වෙනත් නාට්‍ය ‘සද්දන්ත සහ තවත් නාටක’, ‘හංස ගීතය හා වෙනත් නිර්මාණ’ යන කෘතිවල අඩංගු වෙයි. සේකර සර් ආතර් කොනන් ඩොයිල්ගේ ‘ද වයිට් කම්පැනි’ (The White Company) නම්වූ කෘතියේ අනුවාදයක් ‘ධවල සේනාංකය’ නමින් පළ කර ඇත. ඒ හැරුණුකොට තවමත් අප්‍රකාශිත ඔහුගේ පොත් දෙකක් ගැන ද කියැවෙයි. එකක් ‘ඊඩිපස්’ නාට්‍යයේ පරිවර්තනයකි; අනික ඊට ඉහත ජී. බී. සේනානායක ද මඩවල එස්. රත්නායක ද පරිවර්තිත ‘රුබයියාට්’ කෘතියේ පරිවර්තනයකි. සේකර අතිශයින් නිර්ව්‍යාජ කලාකරුවෙකි. ඔහු කොළඹ රැකියාව කොට දුම්රියෙන් ගෙදර ආ කල්හි අමුඩයක් ඇඳ ළි‍ඳෙන් හෝ පීල්ලකින් නා ගනී. එවිට ඔහු මහා කවියා නොවේ. මහා කලාකරුවා නොවේ. ගමේ ජෝන් අයියාගේ පුතාය. සේකර ‘තුංමංහන්දිය’ නවකතාවේ (එසේම පසුව චිත්‍රපටයේ) අබිලිංගේ චරිතය ඔස්සේ මැවූයේ තමන්ගේ ම ප්‍රතිරූපය ම යැයි වරෙක සිතේ. ඔහු සම්මානවලින් හිස උදුමවා ගත්තේ නැත. ‘තුංමංහන්දිය’ චිත්‍රපටයට ටෂ්කන්ට් සම්මානය ලැබුණු බව දැනගත් විට ඔහු උපේක්ෂා සහගතව කියා ඇත්තේ ‘හොඳා - හොඳා’ කියා ය. සේකර කිසිදා ධනෝපායනය උදෙසා කලාව පරිහරණය කළ අයෙක් නොවීය. ඔහු එය පිළිකුල් කළා සේය. සැබෑ කලාකරුවා සන්තුෂ්ටියට පත්වන්නේ ස්වකීය නිර්මාණයෙන්මය; රසිකයා එය වැලඳ ගත් කල්හිය. සේකර තමා නිරත සියලු කලා මාධ්‍ය ඔස්සේ රසිකයාගේ කලා රුචිකත්වය වර්ධනය කළේ ය. සමාජය විනිවිද යන්ට දැක්මක් පාදා මතුකර දුන්නේ ය. එහෙත් සමාජයෙන් ඔහුට පෙරළා ලැබුණේ කුමක් ද?ඔහු උපන් ගමේ ඇතැමුන් කියා ඇත්තේ සේකර මොන තරම් ප්‍රසිද්ධ පුද්ගලයකු වුවත් ගමට එක බෝක්කුවක් බැඳ දීම තරම්වත් සේවයක් කර දී නැති බවය. (අරීසෙන් අහුබුදු කලාකරුවා මියයද්දිත් ඔහුට ඔහු උපන් ගමෙන් ලැබුණේ මෙවන් ප්‍රතිචාරයකි) සේකරගේ පිළිරුව නොයෙක් වර කඩා බිඳ දැමීම්වලට ලක්වූයේ ය. කුල සාධකයක් ද ඊට ඈඳා ගත් ආකාරය දිස්වෙයි. ගමෙන් පමණක් නොව රටින් පවා සේකරට එතරම් යහපත් සත්කාරයක් නොලැබුණු බව පෙනේ. ‘බෝඩිම’ කාව්‍ය සංග්‍රහයෙන් පිටපත් කීපයක් විකුණා ගන්ට සංස්කෘතික දෙපාර්තමේන්තුවට ගිය අවස්ථාවක සේකර ආපසු හරවා එවා තිබුණේ පොත් මිලට ගන්ට මුදල් නොමැති බව කියමිනි. සේකර වෙනුවෙන් අද අපට කළ හැකි යමක් ඉතිරි ව ඇත. එනම්; ඔහුගේ සමස්ත නිර්මාණ දෙස අලුත් විචාර එළැඹුමකින් යුක්තව බැලීම ය. නූතන භාෂාවෙන් කිවහොත් නව කියැවීමක යෙදීමය. මෑතදී කේ. කේ. සමන් කුමාර එබඳු උත්සාහයක් ගත්තේ ය. (‘සේකරගේ නොදුටු පැත්ත’ නම්වූ ලිපි මාලාව) එහෙත් එය පරිසමාප්ත වූවක් නොවීය. මහගමසේකර නම් වූ ‘නොමියෙන ප්‍රබුද්ධයා’ හැදෑරීම සමකාලීන කලාවේ පැතිකඩ ගණනාවක් අධ්‍යයනය කිරීමක් වන්නේය. මේ හැදෑරීමේදී මුලින් වේට්ටියක් හා දිග බැනියමක් ඇඳගෙන සඳැස් කවි ලියමින් නිසඳැස උපහාසයට ලක්කළ, අමුර්ත චිත්‍ර ගර්හාවට ලක්කළ සේකර පසුකලෙක විශාල පිම්මක් පැන නූතනවාදී කලාවට ආ හැටි විමසා බැලීම ද කළ යුතු යැයි අවධාරණය කරමි.
+            <p className="text" style={block4}> මෙහි ප්‍රතිවිරුද්ධ දේ සිදු වූයේ ජෝර්ජ් කීට්ය. එහිදී ජෝර්ජ් කීට් නමැති කවියා යටපත්ව ජෝර්ජ් කීට් නමැති චිත්‍ර ශිල්පියා බිහි වූයේ ය. සේකර නවකතා දෙකක් ද කෙටිකතා සංග්‍රහ දෙකක් ද ලියා පළ කර ඇත. ඔහුගේ නවකතාවක් වූ ‘තුංමංහන්දිය’ ඔහු විසින්ම චිත්‍රපටගත කරනු ලැබිණි. එය 70 දශකයේ හොඳම චිත්‍රපටය ලෙස ජාතික කතෝලික සිනමා පර්ෂදයෙන් බුහුමන් ලද්දේ ය. 1997 දී සිංහල සිනමාවට 50 වසරක් පිරුණු අවස්ථාවේ තේරූ හොඳ ම චිත්‍රපට දහයෙන් එකක් ලෙස ද ‘තුංමංහන්දිය’ තේරුණේ ය. එ සේම එය 1972 දී ටෂ්කන්ට් අන්තර්ජාතික චිත්‍රපට උලෙළේදී ඩිප්ලෝමා සහතිකයක් ද දිනාගත්තේ ය. ‘මූදු පුත්තු’ (ගුණසේන ගලප්පත්ති සමඟ) සේකර ලියූ වේදිකා නාට්‍ය පිටපතකි. ඔහු ලියූ වෙනත් නාට්‍ය ‘සද්දන්ත සහ තවත් නාටක’, ‘හංස ගීතය හා වෙනත් නිර්මාණ’ යන කෘතිවල අඩංගු වෙයි. සේකර සර් ආතර් කොනන් ඩොයිල්ගේ ‘ද වයිට් කම්පැනි’ (The White Company) නම්වූ කෘතියේ අනුවාදයක් ‘ධවල සේනාංකය’ නමින් පළ කර ඇත. ඒ හැරුණුකොට තවමත් අප්‍රකාශිත ඔහුගේ පොත් දෙකක් ගැන ද කියැවෙයි. එකක් ‘ඊඩිපස්’ නාට්‍යයේ පරිවර්තනයකි; අනික ඊට ඉහත ජී. බී. සේනානායක ද මඩවල එස්. රත්නායක ද පරිවර්තිත ‘රුබයියාට්’ කෘතියේ පරිවර්තනයකි. සේකර අතිශයින් නිර්ව්‍යාජ කලාකරුවෙකි. ඔහු කොළඹ රැකියාව කොට දුම්රියෙන් ගෙදර ආ කල්හි අමුඩයක් ඇඳ ළි‍ඳෙන් හෝ පීල්ලකින් නා ගනී. එවිට ඔහු මහා කවියා නොවේ. මහා කලාකරුවා නොවේ. ගමේ ජෝන් අයියාගේ පුතාය. සේකර ‘තුංමංහන්දිය’ නවකතාවේ (එසේම පසුව චිත්‍රපටයේ) අබිලිංගේ චරිතය ඔස්සේ මැවූයේ තමන්ගේ ම ප්‍රතිරූපය ම යැයි වරෙක සිතේ. ඔහු සම්මානවලින් හිස උදුමවා ගත්තේ නැත. ‘තුංමංහන්දිය’ චිත්‍රපටයට ටෂ්කන්ට් සම්මානය ලැබුණු බව දැනගත් විට ඔහු උපේක්ෂා සහගතව කියා ඇත්තේ ‘හොඳා - හොඳා’ කියා ය. සේකර කිසිදා ධනෝපායනය උදෙසා කලාව පරිහරණය කළ අයෙක් නොවීය. ඔහු එය පිළිකුල් කළා සේය. සැබෑ කලාකරුවා සන්තුෂ්ටියට පත්වන්නේ ස්වකීය නිර්මාණයෙන්මය; රසිකයා එය වැලඳ ගත් කල්හිය. සේකර තමා නිරත සියලු කලා මාධ්‍ය ඔස්සේ රසිකයාගේ කලා රුචිකත්වය වර්ධනය කළේ ය. සමාජය විනිවිද යන්ට දැක්මක් පාදා මතුකර දුන්නේ ය. එහෙත් සමාජයෙන් ඔහුට පෙරළා ලැබුණේ කුමක් ද?ඔහු උපන් ගමේ ඇතැමුන් කියා ඇත්තේ සේකර මොන තරම් ප්‍රසිද්ධ පුද්ගලයකු වුවත් ගමට එක බෝක්කුවක් බැඳ දීම තරම්වත් සේවයක් කර දී නැති බවය. (අරීසෙන් අහුබුදු කලාකරුවා මියයද්දිත් ඔහුට ඔහු උපන් ගමෙන් ලැබුණේ මෙවන් ප්‍රතිචාරයකි) සේකරගේ පිළිරුව නොයෙක් වර කඩා බිඳ දැමීම්වලට ලක්වූයේ ය. කුල සාධකයක් ද ඊට ඈඳා ගත් ආකාරය දිස්වෙයි. ගමෙන් පමණක් නොව රටින් පවා සේකරට එතරම් යහපත් සත්කාරයක් නොලැබුණු බව පෙනේ. ‘බෝඩිම’ කාව්‍ය සංග්‍රහයෙන් පිටපත් කීපයක් විකුණා ගන්ට සංස්කෘතික දෙපාර්තමේන්තුවට ගිය අවස්ථාවක සේකර ආපසු හරවා එවා තිබුණේ පොත් මිලට ගන්ට මුදල් නොමැති බව කියමිනි. සේකර වෙනුවෙන් අද අපට කළ හැකි යමක් ඉතිරි ව ඇත. එනම්; ඔහුගේ සමස්ත නිර්මාණ දෙස අලුත් විචාර එළැඹුමකින් යුක්තව බැලීම ය. නූතන භාෂාවෙන් කිවහොත් නව කියැවීමක යෙදීමය. මෑතදී කේ. කේ. සමන් කුමාර එබඳු උත්සාහයක් ගත්තේ ය. (‘සේකරගේ නොදුටු පැත්ත’ නම්වූ ලිපි මාලාව) එහෙත් එය පරිසමාප්ත වූවක් නොවීය. මහගමසේකර නම් වූ ‘නොමියෙන ප්‍රබුද්ධයා’ හැදෑරීම සමකාලීන කලාවේ පැතිකඩ ගණනාවක් අධ්‍යයනය කිරීමක් වන්නේය. මේ හැදෑරීමේදී මුලින් වේට්ටියක් හා දිග බැනියමක් ඇඳගෙන සඳැස් කවි ලියමින් නිසඳැස උපහාසයට ලක්කළ, අමුර්ත චිත්‍ර ගර්හාවට ලක්කළ සේකර පසුකලෙක විශාල පිම්මක් පැන නූතනවාදී කලාවට ආ හැටි විමසා බැලීම ද කළ යුතු යැයි අවධාරණය කරමි.
               <span className="pullquote">ඇත්ත වශයෙන් ම සේකරගේ අවසාන කාව්‍ය සංග්‍රහය වූ ද, ඔහුගේ උත්කෘෂ්ටතම කාව්‍ය කෘතිය වූ ද ප්‍රබුද්ධ පළවී මාස ගණනාවක් යනතුරුම ඒ ගැන කිසිදු කතිකාවක් සිදු නොවූ බව වරක් ප්‍රවීණ ලේඛක එච්. ඒ. සෙනෙවිරත්න වරක් හෙළරව් කර සිටියේය. මේ කාව්‍ය කෘතියේ විශිෂ්ටත්වය සමාජගත වූයේ පසුකලෙකදී ය.</span>
             </p>
 

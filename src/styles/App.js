@@ -72,15 +72,45 @@ export default StyleSheet.create({
         "position": "absolute",
         "opacity": 0,
         "float": "left",
-        "fontSize": 0.6,
+        "fontSize": "0.7em !important",
         "cursor": "pointer",
         "WebkitTransition": "all 0.3s",
         "transition": "all 0.3s"
+    },
+    "block-controls": {
+        "float": "right",
+        "width": "100%",
+        "textAlign": "right",
+        "fontSize": 0.7,
+        "position": "absolute",
+        "WebkitTransition": "all 0.3s",
+        "transition": "all 0.3s",
+        "opacity": 0
+    },
+    "controls": {
+        "backgroundColor": "rgba(255, 255, 255, 0.8)",
+        "paddingTop": 2,
+        "paddingRight": 2,
+        "paddingBottom": 2,
+        "paddingLeft": 2,
+        "WebkitTransition": "all 0.3s",
+        "transition": "all 0.3s",
+        "opacity": 0
+    },
+    "control-label": {
+        "float": "left",
+        "display": "block"
+    },
+    "rc-slider": {
+        "display": "inline-block"
     },
     "edit react-resizable-handle": {
         "WebkitTransition": "all 0.3s",
         "transition": "all 0.3s",
         "opacity": 0
+    },
+    "block-controls:hover controls": {
+        "opacity": 1
     },
     "edit:hover drag": {
         "opacity": 1
@@ -88,10 +118,21 @@ export default StyleSheet.create({
     "edit:hover react-resizable-handle": {
         "opacity": 1
     },
+    "edit:hover block-controls": {
+        "opacity": 1
+    },
+    "rc-slider-track": {
+        "backgroundColor": "#111"
+    },
+    "rc-slider-handle": {
+        "borderColor": "rgb(17, 17, 17)"
+    },
+    "rc-slider-handle:hover": {
+        "borderColor": "#cfcfcf"
+    },
     "section-title": {
         "marginBottom": 0,
-        "fontWeight": "300",
-        "fontSize": 2.5
+        "fontWeight": "300"
     },
     "title-meta": {
         "fontSize": 1.5,

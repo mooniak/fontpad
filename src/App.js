@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import Slider from 'rc-slider';
+import MediumEditor from 'medium-editor';
 
 
 import '../node_modules/medium-editor/dist/css/medium-editor.min.css';
@@ -38,7 +39,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // const editor = new MediumEditor('.edit', {});
+    const editor = new MediumEditor('.edit', {
+      toolbar: {
+        buttons: []
+      }
+    });
   }
 
   render() {

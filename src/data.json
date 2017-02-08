@@ -1,22 +1,15 @@
-{
-  block1: {
-  fontSize: '40',
-  lineHeight: '1.5',
-  letterSpacing: '0'
-  },
-  block2: {
-    fontSize: '25',
-    lineHeight: '1.5',
-    letterSpacing: '0'
-  },
-  block3: {
-    fontSize: '16',
-    lineHeight: '1.7',
-    letterSpacing: '0'
-  },
-  block4: {
-    fontSize: '16',
-    lineHeight: '1.7',
-    letterSpacing: '0'
-  }
+{"settings":
+  [
+    {"fontSize": 40,"lineHeight": 1.5,"letterSpacing": 0, "content": ""},
+    {"fontSize":25,"lineHeight": 1.5,"letterSpacing": 0, "content": ""},
+    {"fontSize": 16,"lineHeight": 1.7,"letterSpacing": 0, "content": ""},
+    {"fontSize": 16,"lineHeight": 1.7,"letterSpacing": 0, "content": ""}
+  ],
+  "layout": [
+     { "i": 10, "x":0, "y": 0, "w": 4, "h": 7 },
+    { "i": 15, "x": 0, "y": 0, "w": 4, "h": 2 },
+    { "i": 20, "x": 0, "y": 0, "w": 4, "h": 35 },
+     { "i": 30, "x": 8, "y": 0, "w": 8, "h": 35 },
+     { "i": 40, "x": 6, "y": 0, "w": 6, "h": 3 }
+   ]
 }

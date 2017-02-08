@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import Slider from 'rc-slider';
 import MediumEditor from 'medium-editor';
+import customData from './data.json';
 import axios from 'axios';
 import '../node_modules/medium-editor/dist/css/medium-editor.min.css';
 import '../node_modules/medium-editor/dist/css/themes/beagle.min.css';
@@ -9,21 +10,15 @@ import '../node_modules/rc-slider/assets/index.css';
 
 const ReactGridLayout2 = WidthProvider(ReactGridLayout);
  /* eslint-disable */
-
-/////////////////////
-
-///////////////////////////
 class App extends Component {
   constructor(props) {
     super(props);
-    // forward slashes will depend on the file location
+
+
     // read from local file
-    // let data = require('./data.json');
-    // for(let i = 0; i < data.length; i++) {
-    //     const obj = data[i];
-    //     console.log(obj);
-    //     // console.log("Name: " + obj.first_name + ", " + obj.last_name);
-    // }
+    console.log(customData)
+    this.state = { blocks: customData };
+
 
     this.state = {
       block1: {
@@ -50,9 +45,9 @@ class App extends Component {
 
   }
 
-    componentWillUnmount() {
+  componentWillUnmount() {
       this.serverRequest.abort();
-    }
+  }
 
 
   componentDidMount() {
@@ -60,31 +55,34 @@ class App extends Component {
       toolbar: {
         buttons: []
       }
-    });
+  });
 
-
-    var _this = this;
+    let _this = this;
     this.serverRequest =
       axios
-        .get("http://codepen.io/jobs.json")
+        .get("https://api.github.com/users/asela-wijesinghe/repos")
+          // .get("http://localhost:3000/src/data.json")
         .then(function(result) {
-  console.log(result);
+
+          //get all user repos and here we can config which fonts to display
+          console.log(result);
+
           _this.setState({
-            jobs: result.data.jobs
+            repos: result.data.repos
           });
-        })
+      })
   }
 
   render() {
-    const { block1, block2, block3, block4 } = this.state;
+    const { block1, block2, block3, block4,layout } = this.state;
 
-    const layout = [
-      { i: '10', x: 0, y: 0, w: 4, h: 7 },
-      { i: '15', x: 0, y: 0, w: 4, h: 2 },
-      { i: '20', x: 0, y: 0, w: 4, h: 35 },
-      { i: '30', x: 8, y: 0, w: 8, h: 35 },
-      { i: '40', x: 6, y: 0, w: 6, h: 3 }
-    ];
+    // const layout = [
+    //   { i: '10', x: 0, y: 0, w: 4, h: 7 },
+    //   { i: '15', x: 0, y: 0, w: 4, h: 2 },
+    //   { i: '20', x: 0, y: 0, w: 4, h: 35 },
+    //   { i: '30', x: 8, y: 0, w: 8, h: 35 },
+    //   { i: '40', x: 6, y: 0, w: 6, h: 3 }
+    // ];
 
     return (
       <div className="App">

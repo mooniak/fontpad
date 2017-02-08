@@ -2,17 +2,28 @@ import React, { Component } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import Slider from 'rc-slider';
 import MediumEditor from 'medium-editor';
-
-
+import axios from 'axios';
 import '../node_modules/medium-editor/dist/css/medium-editor.min.css';
 import '../node_modules/medium-editor/dist/css/themes/beagle.min.css';
 import '../node_modules/rc-slider/assets/index.css';
 
 const ReactGridLayout2 = WidthProvider(ReactGridLayout);
+ /* eslint-disable */
 
+/////////////////////
+
+///////////////////////////
 class App extends Component {
   constructor(props) {
     super(props);
+    // forward slashes will depend on the file location
+    // read from local file
+    // let data = require('./data.json');
+    // for(let i = 0; i < data.length; i++) {
+    //     const obj = data[i];
+    //     console.log(obj);
+    //     // console.log("Name: " + obj.first_name + ", " + obj.last_name);
+    // }
 
     this.state = {
       block1: {
@@ -36,7 +47,13 @@ class App extends Component {
         letterSpacing: '0'
       }
     };
+
   }
+
+    componentWillUnmount() {
+      this.serverRequest.abort();
+    }
+
 
   componentDidMount() {
     const editor = new MediumEditor('.edit', {
@@ -44,6 +61,18 @@ class App extends Component {
         buttons: []
       }
     });
+
+
+    var _this = this;
+    this.serverRequest =
+      axios
+        .get("http://codepen.io/jobs.json")
+        .then(function(result) {
+  console.log(result);
+          _this.setState({
+            jobs: result.data.jobs
+          });
+        })
   }
 
   render() {

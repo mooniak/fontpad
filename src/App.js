@@ -10,19 +10,21 @@ import '../node_modules/rc-slider/assets/index.css';
 
 const ReactGridLayout2 = WidthProvider(ReactGridLayout);
  /* eslint-disable */
+import keydown, { Keys } from 'react-keydown';
+
 class App extends Component {
   constructor(props) {
     super(props);
-
+    this._onBlockResize = this._onBlockResize.bind(this);
     // read from local file
-    console.log(customData)
+    // console.log(customData)
     this.state =
     {
       settings: customData.settings,
       layouts:  customData.layouts,
       fontTitle: customData.fontTitle,
-       fontMeta1: customData.fontMeta1,
-       fontMeta2: customData.fontMeta2,
+      fontMeta1: customData.fontMeta1,
+      fontMeta2: customData.fontMeta2,
     };
   }
 
@@ -42,11 +44,11 @@ class App extends Component {
     this.serverRequest =
       axios
         .get("https://api.github.com/users/asela-wijesinghe/repos")
-          // .get("http://localhost:3000/src/data.json")
+          // .get("http://localhost:3000/src/data.json") user wants multiple users to include
         .then(function(result) {
 
           //get all user repos and here we can config which fonts to display
-          console.log(result);
+          // console.log(result);
 
           _this.setState({
             repos: result.data.repos
@@ -124,6 +126,42 @@ class App extends Component {
   })
   }
 
+
+  @keydown( 'enter' )
+  _onBlockResize({ keydown },layout,block) {
+     if ( keydown.event ) {
+       console.log('key down', keydown);
+     }
+        console.log(layout);
+        console.log(block);
+        const width = block.w;
+        const height = block.h;
+        const oldheight=this.state.layouts[1].h;
+        const diff = height-oldheight;
+        const oldFontSize = this.state.settings[1].fontSize;
+
+        console.log('Old: ',oldheight);
+        console.log('Now: ',height);
+
+        if(diff>0){
+          console.log('Size down',diff);
+        }else{
+          console.log('Size up',diff);
+        };
+
+        let stateCopy = Object.assign({}, this.state);
+        stateCopy.settings = stateCopy.settings.slice();
+        stateCopy.settings[1] = Object.assign({}, block);
+        stateCopy.settings[1].fontSize = oldFontSize + diff;
+        this.setState(stateCopy);
+    }
+
+  handleKeyPress (event) {
+  if(event.key == 'Shift'){
+    console.log('Shift press here! ');
+  }
+}
+
   render() {
     const { layouts, fontTitle, fontMeta1, fontMeta2 } = this.state;
 
@@ -143,6 +181,8 @@ class App extends Component {
           rowHeight={30}
           autoSize
           useCSSTransforms
+          onResize={(layout,block)=> this._onBlockResize(layout,block)}
+          onKeyPress
         >
           {this.renderBlocks()}
         </ReactGridLayout2>

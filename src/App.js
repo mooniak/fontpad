@@ -127,11 +127,12 @@ class App extends Component {
   }
 
 
-  @keydown( 'enter' )
+  // @keydown( 'enter' )
   _onBlockResize({ keydown },layout,block) {
-     if ( keydown.event ) {
-       console.log('key down', keydown);
-     }
+    // console.log(keydown);
+    //  if ( keydown.event ) {
+    //    console.log('key down', keydown);
+    //  }
         console.log(layout);
         console.log(block);
         const width = block.w;
@@ -179,10 +180,10 @@ class App extends Component {
           layout={layouts}
           cols={12}
           rowHeight={30}
+          onKeyPress={()=>console.log('key')}
           autoSize
           useCSSTransforms
-          onResize={(layout,block)=> this._onBlockResize(layout,block)}
-          onKeyPress
+          onResize={({keydown},layout,block)=> this._onBlockResize({keydown},layout,block)}
         >
           {this.renderBlocks()}
         </ReactGridLayout2>

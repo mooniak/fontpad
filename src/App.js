@@ -38,7 +38,7 @@ class App extends Component {
       toolbar: {
         buttons: []
       }
-  });
+    });
 
     let _this = this;
     this.serverRequest =
@@ -126,42 +126,63 @@ class App extends Component {
   })
   }
 
-
   // @keydown( 'enter' )
   _onBlockResize({ keydown },layout,block) {
-    // console.log(keydown);
-    //  if ( keydown.event ) {
-    //    console.log('key down', keydown);
-    //  }
-        console.log(layout);
-        console.log(block);
+        const { settings } = this.state;
+        // console.log(keydown);
+        //  if ( keydown.event ) {
+        //    console.log('key down', keydown);
+        //  }
+
+        const index = settings.findIndex((setting)=> setting.i == (block.i));
+        console.log('index :', index);
+
         const width = block.w;
         const height = block.h;
-        const oldheight=this.state.layouts[1].h;
+        const oldheight=this.state.layouts[index].h;
         const diff = height-oldheight;
-        const oldFontSize = this.state.settings[1].fontSize;
+        const oldFontSize = this.state.settings[index].fontSize;
+        const fontSize = oldFontSize + diff;
 
-        console.log('Old: ',oldheight);
-        console.log('Now: ',height);
 
         if(diff>0){
-          console.log('Size down',diff);
+          console.log('Size Up',diff);
         }else{
-          console.log('Size up',diff);
+          console.log('Size Down',diff);
         };
 
-        let stateCopy = Object.assign({}, this.state);
-        stateCopy.settings = stateCopy.settings.slice();
-        stateCopy.settings[1] = Object.assign({}, block);
-        stateCopy.settings[1].fontSize = oldFontSize + diff;
-        this.setState(stateCopy);
+        settings[index].fontSize = fontSize;
+
+        this.setState({
+          settings
+        });
+
+        console.log(this.state.settings[index].fontSize);
+
+        this.resizeWithAspectRatio(layout,block, index);
     }
 
-  handleKeyPress (event) {
-  if(event.key == 'Shift'){
-    console.log('Shift press here! ');
-  }
-}
+    resizeWithAspectRatio(block, index){
+      const { layouts } = this.state;
+
+      // const width = block.w;
+      const height = block.h;
+      // const oldheight=layouts[index].h;
+      // const tot = height+oldheight;
+      // const ratio1 = height/tot;
+
+      layouts[index].w = height;
+      layouts[index].h = height;
+
+      this.setState(layouts);
+
+    }
+
+  // handleKeyPress (event) {
+  //   if(event.key == 'Shift'){
+  //     console.log('Shift press here! ');
+  //   }
+  // }
 
   render() {
     const { layouts, fontTitle, fontMeta1, fontMeta2 } = this.state;

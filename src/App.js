@@ -10,7 +10,6 @@ import '../node_modules/rc-slider/assets/index.css';
 
 const ReactGridLayout2 = WidthProvider(ReactGridLayout);
  /* eslint-disable */
-import keydown, { Keys } from 'react-keydown';
 
 class App extends Component {
   constructor(props) {
@@ -25,6 +24,10 @@ class App extends Component {
       fontTitle: customData.fontTitle,
       fontMeta1: customData.fontMeta1,
       fontMeta2: customData.fontMeta2,
+      hotkeys: {
+              ctrl: false,
+              shift: false
+              }
     };
   }
 
@@ -56,13 +59,60 @@ class App extends Component {
       })
   }
 
+  checkKey(e) {
+
+      if (e.repeat == false){
+
+        let theKeyPressed = null;
+        let {ctrl, shift} = this.state.hotkeys;
+
+        if(window.event) {
+          theKeyPressed = e.keyCode;
+        }
+
+        if(e.which) {
+          theKeyPressed = e.which;
+        }
+
+      switch(theKeyPressed) {
+
+        case 17: theKeyPressed = 'CTRL';
+            // if(hotkeys>0){
+            //   hotkeys -= 1;
+            // }else{
+            //   hotkeys += 1;
+            // }
+            ctrl = !ctrl;
+            console.log(!ctrl);
+            break;
+
+        case 16: theKeyPressed = 'SHIFT';
+
+            // if(hotkeys>0){
+            //   hotkeys -= 2;
+            // }else{
+            //   hotkeys += 2;
+            // }
+            shift= !shift;
+            console.log(!shift);
+            break;
+      }
+
+      this.setState({
+        hotkeys: {
+          shift, ctrl
+        }
+      });
+    }
+  }
+
   renderBlocks(){
   const {settings, layouts} = this.state;
   return settings.map((block,index)=> {
     const key = block.i;
 
     return (
-      <div key={key} className="edit">
+      <div key={key} className="edit" onKeyDown={(event) => this.checkKey(event)} onKeyUp={(event) => this.checkKey(event)}>
         <i className="fa fa-arrows drag" aria-hidden="true" />
 
         <div className="block-controls">
@@ -126,40 +176,46 @@ class App extends Component {
   })
   }
 
-  // @keydown( 'enter' )
-  _onBlockResize({ keydown },layout,block) {
+  _onBlockResize(layout,block) {
         const { settings } = this.state;
-        // console.log(keydown);
-        //  if ( keydown.event ) {
-        //    console.log('key down', keydown);
-        //  }
+        const { ctrl, shift } = this.state.hotkeys;
 
-        const index = settings.findIndex((setting)=> setting.i == (block.i));
-        console.log('index :', index);
+        if(ctrl && shift){
+          console.log('run ctrl+shift');
+          const index = settings.findIndex((setting)=> setting.i == (block.i));
+          console.log('index :', index);
 
-        const width = block.w;
-        const height = block.h;
-        const oldheight=this.state.layouts[index].h;
-        const diff = height-oldheight;
-        const oldFontSize = this.state.settings[index].fontSize;
-        const fontSize = oldFontSize + diff;
+          const width = block.w;
+          const height = block.h;
+          const oldheight=this.state.layouts[index].h;
+          const diff = height-oldheight;
+          const oldFontSize = this.state.settings[index].fontSize;
+          const fontSize = oldFontSize + diff;
 
 
-        if(diff>0){
-          console.log('Size Up',diff);
-        }else{
-          console.log('Size Down',diff);
-        };
+          if(diff>0){
+            console.log('Size Up',diff);
+          }else{
+            console.log('Size Down',diff);
+          };
 
-        settings[index].fontSize = fontSize;
+          settings[index].fontSize = fontSize;
 
-        this.setState({
-          settings
-        });
+          this.setState({
+            settings
+          });
+          // this.resizeWithAspectRatio(block, index);
 
-        console.log(this.state.settings[index].fontSize);
 
-        this.resizeWithAspectRatio(layout,block, index);
+        }else if(ctrl==false && shift){
+
+          console.log('run shift');
+          this.resizeWithAspectRatio(block, index);
+        }
+
+
+
+
     }
 
     resizeWithAspectRatio(block, index){
@@ -177,12 +233,6 @@ class App extends Component {
       this.setState(layouts);
 
     }
-
-  // handleKeyPress (event) {
-  //   if(event.key == 'Shift'){
-  //     console.log('Shift press here! ');
-  //   }
-  // }
 
   render() {
     const { layouts, fontTitle, fontMeta1, fontMeta2 } = this.state;
@@ -204,7 +254,7 @@ class App extends Component {
           onKeyPress={()=>console.log('key')}
           autoSize
           useCSSTransforms
-          onResize={({keydown},layout,block)=> this._onBlockResize({keydown},layout,block)}
+          onResize={(layout,block)=> this._onBlockResize(layout,block)}
         >
           {this.renderBlocks()}
         </ReactGridLayout2>

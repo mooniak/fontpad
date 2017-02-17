@@ -24,10 +24,11 @@ class App extends Component {
       fontTitle: customData.fontTitle,
       fontMeta1: customData.fontMeta1,
       fontMeta2: customData.fontMeta2,
-      hotkeys: {
-              ctrl: false,
-              shift: false
-              }
+      hotkeys:
+       {
+        ctrl: false,
+        shift: false
+       }
     };
   }
 
@@ -83,7 +84,7 @@ class App extends Component {
             //   hotkeys += 1;
             // }
             ctrl = !ctrl;
-            console.log(!ctrl);
+
             break;
 
         case 16: theKeyPressed = 'SHIFT';
@@ -94,7 +95,7 @@ class App extends Component {
             //   hotkeys += 2;
             // }
             shift= !shift;
-            console.log(!shift);
+
             break;
       }
 
@@ -176,61 +177,53 @@ class App extends Component {
   })
   }
 
-  _onBlockResize(layout,block) {
-        const { settings } = this.state;
+  _onBlockResize(layout, oldBlock, newBlock) {
+
+        const { settings, layouts } = this.state;
         const { ctrl, shift } = this.state.hotkeys;
 
+        const index = settings.findIndex((setting)=> setting.i == (oldBlock.i));
+
+
+        const width = layouts[index].w;
+        const height = layouts[index].h;
+        const newWidth = newBlock.w;
+        const newHeight = newBlock.h;
+
+        layouts[index].h = newHeight;
+        layouts[index].w = newWidth;
+
+        this.setState({layouts});
+
         if(ctrl && shift){
-          console.log('run ctrl+shift');
-          const index = settings.findIndex((setting)=> setting.i == (block.i));
-          console.log('index :', index);
-
-          const width = block.w;
-          const height = block.h;
-          const oldheight=this.state.layouts[index].h;
-          const diff = height-oldheight;
-          const oldFontSize = this.state.settings[index].fontSize;
-          const fontSize = oldFontSize + diff;
-
-
-          if(diff>0){
-            console.log('Size Up',diff);
-          }else{
-            console.log('Size Down',diff);
-          };
+          // console.log('run ctrl+shift');
+          const diff = newHeight-height;
+          const oldFontSize = settings[index].fontSize;
+          let fontSize = oldFontSize + (4*diff);
 
           settings[index].fontSize = fontSize;
-
           this.setState({
             settings
           });
-          // this.resizeWithAspectRatio(block, index);
-
+          this.resizeWithAspectRatio(index, oldBlock, layouts);
 
         }else if(ctrl==false && shift){
-
           console.log('run shift');
-          this.resizeWithAspectRatio(block, index);
+          this.resizeWithAspectRatio(index, oldBlock, layouts);
         }
-
-
-
-
     }
 
-    resizeWithAspectRatio(block, index){
-      const { layouts } = this.state;
+    resizeWithAspectRatio(index, oldBlock, layouts){
 
-      // const width = block.w;
-      const height = block.h;
-      // const oldheight=layouts[index].h;
+      const oldheight=oldBlock.h;
+      const oldwidth=oldBlock.w;
+
+      //here we need to change the width according to the ratio0
       // const tot = height+oldheight;
       // const ratio1 = height/tot;
 
-      layouts[index].w = height;
-      layouts[index].h = height;
-
-      this.setState(layouts);
+      layouts[index].w = layouts[index].h/2;
+      this.setState({layouts});
 
     }
 
@@ -251,10 +244,12 @@ class App extends Component {
           layout={layouts}
           cols={12}
           rowHeight={30}
-          onKeyPress={()=>console.log('key')}
-          autoSize
+          // autoSize
           useCSSTransforms
-          onResize={(layout,block)=> this._onBlockResize(layout,block)}
+          // onResize={(layout,block,block2,block3)=> console.log((layout,block))}
+          // onResizeStart={(layout,block,block2,block3)=> console.log((layout,block))}
+          // onResizeStop={(layout,block,block2,block3)=> this._onBlockResize(layout,block)}
+          onResize={(layout,block, block2)=> this._onBlockResize(layout,block, block2)}
         >
           {this.renderBlocks()}
         </ReactGridLayout2>

@@ -1,0 +1,18 @@
+{
+  "fontTitle": "Maname fontpad",
+  "fontMeta1": "v0.001-alpha",
+  "fontMeta2": "Updated on 27 Dec 2016",
+  "settings":
+  [
+   {"i": "10","fontSize": 40,"lineHeight": 1.5,"letterSpacing": 0, "content": "The Screen in Review Elephant Walk opens at Astor theatre"},
+   {"i": "15","fontSize":25,"lineHeight": 1.5,"letterSpacing": 0, "content": "By BOSLEY CROWTHER"},
+   {"i": "20","fontSize": 16,"lineHeight": 1.7,"letterSpacing": 0, "content": "“TELL me about the elephants,” Elizabeth Taylor  timorously says to Dana Andrews in the first few minutes of the Astor’s new picture, “Elephant Walk.” The two are casually getting acquainted in an elegant mansion on a tea plantation in Ceylon.Miss Taylor is the new, young wife of the plantation wner and she is just out from England; Mr. Andrews is the plantation boss.”Don’t mention those terrible monsters!” says Mr. Andrews—or words to that effect. His disregard for the creatures is pungent and unreserved. The elephants roam all over the plantation, trampling down the plants. And they’d knock down the house, too, if a strong guard of natives was not maintained. It seems that the present owner’s father—”Old Master,” or “the Guvnor,” as he is known—deliberately built his mansion right where the elephants liked to walk. Being elephants, they haven’t forgotten. That’s just one of the trials Miss Taylor must endure. But more disturbing to her peace and enjoyment of the lthan roll his eyes. The elephants have had their way, and the ghost of “old master” has been Vipbed out. Is there anything more you’d like to know? ELEPHANT WALK, screen play by John Lee Mahin, based on a novel by Robert Standish; directed by William Dieterle; produced by Irving Asher for Paramount Pictures. At the Astor"},
+   {"i": "30","fontSize": 16,"lineHeight": 1.7,"letterSpacing": 0, "content": "මතය වන්නේ සේකර විශේෂයෙන් කැපී පෙනුණේ චිත්‍ර කලාවට බව ය. කවියේදී මෙන් ම චිත්‍ර කලාවේදී ද මුල් යුගයේ ඔහු අමුර්ත චිත්‍ර ගර්හාවට ලක් කර ඇත. එහෙත් පසුව ඔහු නිර්මාණ බිහි කළේ එම චිත්‍ර ශෛලිය ප්‍රගුණ කරමිනි. මා නිවැරැදි නම් සේකර අවස්ථා තුනකට වඩා චිත්‍ර ප්‍රදර්ශන පවත්වා නැත. ඔහුගේ චිත්‍ර නිර්මාණ විග්‍රහයේ පහසුව තකා කොටස් කීපයකට බෙදා දැක්විය හැකිය. ප්‍රදර්ශන සඳහා ඉදිරිපත් කළ චිත්‍ර ‘තුංමංහන්දිය’ චිත්‍රපටය සඳහා නිර්මිත චිත්‍ර, පුවත්පත් කාටුන්, පොත් කංචුක නිර්මාණ, බතික් නිර්මාණ, එම්බ්‍රොයිඩර් නිර්මාණ සහ පෝස්ටර්. සේකරගේ චිත්‍ර ගැන මෙතෙක් නිසි විචාරක අවධානයක් යොමු වී නැත. එහි විපාක වශයෙන්දෝ සේකර නමැති චිත්‍ර ශිල්පියා යටපත්ව සේකර නමැති කවියා හා ගීත රචකයා බිහි වූ ආකාරයක් පෙනේ."}
+  ],
+  "layouts": [
+  { "i": "10", "x":0, "y": 0, "w": 4, "h": 7 },
+  { "i": "15", "x": 0, "y": 0, "w": 4, "h": 2 },
+  { "i": "20", "x": 0, "y": 0, "w": 4, "h": 35 },
+  { "i": "30", "x": 8, "y": 0, "w": 8, "h": 35 }
+  ]
+}

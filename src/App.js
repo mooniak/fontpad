@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactGridLayout, { WidthProvider } from 'react-grid-layout';
 import Slider from 'rc-slider';
 import MediumEditor from 'medium-editor';
-import customData from './data.json';
+import customData from '../data.json';
 import axios from 'axios';
 import '../node_modules/medium-editor/dist/css/medium-editor.min.css';
 import '../node_modules/medium-editor/dist/css/themes/beagle.min.css';
@@ -15,8 +15,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this._onBlockResize = this._onBlockResize.bind(this);
-    // read from local file
-    // console.log(customData)
     this.state =
     {
       settings: customData.settings,
@@ -24,7 +22,7 @@ class App extends Component {
       fontTitle: customData.fontTitle,
       fontMeta1: customData.fontMeta1,
       fontMeta2: customData.fontMeta2,
-      hotkeys:
+      pressedkeys:
        {
         ctrl: false,
         shift: false
@@ -50,57 +48,44 @@ class App extends Component {
         .get("https://api.github.com/users/asela-wijesinghe/repos")
           // .get("http://localhost:3000/src/data.json") user wants multiple users to include
         .then(function(result) {
-
           //get all user repos and here we can config which fonts to display
           // console.log(result);
-
           _this.setState({
             repos: result.data.repos
           });
       })
   }
 
+
   checkKey(e) {
 
       if (e.repeat == false){
 
         let theKeyPressed = null;
-        let {ctrl, shift} = this.state.hotkeys;
+        let {ctrl, shift} = this.state.pressedkeys;
+
 
         if(window.event) {
           theKeyPressed = e.keyCode;
         }
-
         if(e.which) {
           theKeyPressed = e.which;
         }
 
+
       switch(theKeyPressed) {
 
         case 17: theKeyPressed = 'CTRL';
-            // if(hotkeys>0){
-            //   hotkeys -= 1;
-            // }else{
-            //   hotkeys += 1;
-            // }
             ctrl = !ctrl;
-
             break;
 
         case 16: theKeyPressed = 'SHIFT';
-
-            // if(hotkeys>0){
-            //   hotkeys -= 2;
-            // }else{
-            //   hotkeys += 2;
-            // }
             shift= !shift;
-
             break;
       }
 
       this.setState({
-        hotkeys: {
+        pressedkeys: {
           shift, ctrl
         }
       });
@@ -180,10 +165,10 @@ class App extends Component {
   _onBlockResize(layout, oldBlock, newBlock) {
 
         const { settings, layouts } = this.state;
-        const { ctrl, shift } = this.state.hotkeys;
+        const { ctrl, shift } = this.state.pressedkeys;
 
+        //we use id to find the correct index of the array
         const index = settings.findIndex((setting)=> setting.i == (oldBlock.i));
-
 
         const width = layouts[index].w;
         const height = layouts[index].h;
@@ -196,7 +181,6 @@ class App extends Component {
         this.setState({layouts});
 
         if(ctrl && shift){
-          // console.log('run ctrl+shift');
           const diff = newHeight-height;
           const oldFontSize = settings[index].fontSize;
           let fontSize = oldFontSize + (4*diff);
@@ -244,11 +228,8 @@ class App extends Component {
           layout={layouts}
           cols={12}
           rowHeight={30}
-          // autoSize
+          autoSize
           useCSSTransforms
-          // onResize={(layout,block,block2,block3)=> console.log((layout,block))}
-          // onResizeStart={(layout,block,block2,block3)=> console.log((layout,block))}
-          // onResizeStop={(layout,block,block2,block3)=> this._onBlockResize(layout,block)}
           onResize={(layout,block, block2)=> this._onBlockResize(layout,block, block2)}
         >
           {this.renderBlocks()}
